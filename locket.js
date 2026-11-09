@@ -8350,11 +8350,12 @@ function hamVaForceOverride(entries) {
 hamVaForceOverride(obj.entries);
 
 // ============================================================
-// 10. CHÈN NGÀY MEMBER SINH NHẬT LÊN BADGE
+// 10. ÉP MỞ KHOÁ HUY HIỆU GOLD & NGÀY THÁNG
 // ============================================================
 var MEMBER_SINCE = "28/02/2026";
 
 Object.assign(obj.entries, {
+    // Các key ép Locket hiểu user đã mua Gold từ lâu
     member_since: MEMBER_SINCE,
     locket_member_since: MEMBER_SINCE,
     locket_gold_since: MEMBER_SINCE,
@@ -8365,22 +8366,31 @@ Object.assign(obj.entries, {
     profile_badge_since: MEMBER_SINCE,
     profile_badge_visible: "true",
     show_gold_badge: "true",
-    gold_badge_profile_menu: "enabled",
     
+    // Ép các key quyết định việc bật/tắt nút
+    gold_badge_profile_menu: "enabled",
+    show_gold_badge_setting: "true",
+    allow_gold_badge_toggle: "true",
+    gold_badge_enabled: "true",
+    gold_badge_switch_enabled: "true",
+    is_gold_badge_enabled: "true",
+    enable_gold_badge_toggle: "true",
+    
+    // Cập nhật popup chuẩn (chống hiện popup rác)
     feature_discovery_popup_config: JSON.stringify({
-        tag: "GOLD " + MEMBER_SINCE,
+        tag: "Locket Gold ",
         tag_gradient: true,
         tag_style: "gold_gradient",
-        title: "Locket Gold đã kích hoạt 🔓",
+        title: "Bạn Đã Lên LocketGold Rồi Đó",
         feature_set: [
             {
-                title: "Thành viên từ " + MEMBER_SINCE + " 💛",
-                body: "Chúc mừng bạn đã mở khoá toàn bộ Locket Gold. Thành viên từ " + MEMBER_SINCE + ".",
-                imageURL: "https://i.ibb.co/gZ6HkyWT/L-n-Gold-R-i.png"
+                title: "💛",
+                body: "Chúc mừng bạn đã mở khoá toàn bộ Locket Gold.",
+                imageURL: "https://ibb.co/cKFTGywQ"
             }
         ],
         primary_button_title: "Xong",
-        campaign: "locket_gold_welcome_v4",
+        campaign: "locket_gold_v5", // Tăng version để ép nó bung popup mới
         start_at: "2020-01-01T00:00:00",
         end_at: "2099-12-31T23:59:59",
         use_local_time_zone: true

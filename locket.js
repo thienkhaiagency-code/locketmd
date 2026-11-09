@@ -8305,12 +8305,11 @@ Object.assign(obj.entries, {
 });
 
 // ============================================================
-// 9. HÀM VẢ CỰC MẠNH (FORCE OVERRIDE ĐÈ TẤT CẢ GIÁ TRỊ VỀ GOLD & 45S)
+// 9. VÁ LỖI GHI ĐÈ & ÉP NGÀY THÁNG
 // ============================================================
 function hamVaForceOverride(entries) {
     if (!entries || typeof entries !== "object") return;
     
-    // 1. Vả thời lượng 45 giây vào mọi key video/duration
     var durationKeys = [
         "max_video_duration", "video_max_duration", "camera_roll_max_duration",
         "camera_roll_video_max_duration", "camera_roll_duration",
@@ -8320,7 +8319,6 @@ function hamVaForceOverride(entries) {
         entries[durationKeys[i]] = "45.0";
     }
 
-    // 2. Vả cờ Gold & Miễn phí toàn bộ bộ lọc
     entries["is_gold"] = "true";
     entries["has_gold"] = "true";
     entries["is_gold_user"] = "true";
@@ -8343,19 +8341,20 @@ function hamVaForceOverride(entries) {
     entries["camera_filter_paywall_enabled"] = "false";
     entries["filter_upsell_enabled"] = "false";
 
-    // 3. Vả đè vô hiệu hóa cache cũ của iOS
     entries["cache_ttl_seconds"] = "0";
     entries["client_cache_ttl_sec"] = "0";
 }
-hamVaForceOverride(obj.entries);
 
 // ============================================================
-// 10. ÉP MỞ KHOÁ HUY HIỆU GOLD & NGÀY THÁNG
+// 10. CHÈN NGÀY MEMBER VÀ BẬT HUY HIỆU (KHÔNG BỊ GHI ĐÈ)
 // ============================================================
 var MEMBER_SINCE = "28/02/2026";
 
+// Chạy hàm cũ trước
+hamVaForceOverride(obj.entries);
+
+// Sau đó ghi đè ngày tháng để nó chắc chắn ăn
 Object.assign(obj.entries, {
-    // Các key ép Locket hiểu user đã mua Gold từ lâu
     member_since: MEMBER_SINCE,
     locket_member_since: MEMBER_SINCE,
     locket_gold_since: MEMBER_SINCE,
@@ -8366,7 +8365,18 @@ Object.assign(obj.entries, {
     profile_badge_since: MEMBER_SINCE,
     profile_badge_visible: "true",
     show_gold_badge: "true",
-    
+    gold_badge_profile_menu: "enabled",
+    show_gold_badge_setting: "true",
+    allow_gold_badge_toggle: "true",
+    gold_badge_enabled: "true",
+    gold_badge_switch_enabled: "true",
+    is_gold_badge_enabled: "true",
+    enable_gold_badge_toggle: "true"
+});
+
+$done({
+    body: JSON.stringify(obj)
+});
     // Ép các key quyết định việc bật/tắt nút
     gold_badge_profile_menu: "enabled",
     show_gold_badge_setting: "true",

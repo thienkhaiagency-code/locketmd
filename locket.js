@@ -8376,21 +8376,21 @@ Object.assign(obj.entries, {
     is_gold_badge_enabled: "true",
     enable_gold_badge_toggle: "true",
     
-    // Cập nhật popup chuẩn (chống hiện popup rác)
+    // Cập nhật popup chuẩn
     feature_discovery_popup_config: JSON.stringify({
-        tag: "Locket Gold ",
+        tag: "Locket Gold",
         tag_gradient: true,
         tag_style: "gold_gradient",
-        title: "Bạn Đã Lên LocketGold Rồi Đó",
+        title: "iutdyy Locket Gold",
         feature_set: [
             {
                 title: "💛",
                 body: "Chúc mừng bạn đã mở khoá toàn bộ Locket Gold.",
-                imageURL: "https://ibb.co/cKFTGywQ"
+                imageURL: "https://i.ibb.co/LDtpL0r1/1-CF7-E62-D-A3-F2-4-C2-F-80-D2-F847-D10-F808-E.png"
             }
         ],
         primary_button_title: "Xong",
-        campaign: "locket_gold_v5", // Tăng version để ép nó bung popup mới
+        campaign: "locket_gold_v9", // Đã lên v9 chống dính cache
         start_at: "2020-01-01T00:00:00",
         end_at: "2099-12-31T23:59:59",
         use_local_time_zone: true

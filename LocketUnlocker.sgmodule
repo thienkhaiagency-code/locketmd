@@ -1,5 +1,5 @@
 #!name=Locket Custom Edition — Axion99Error
-#!desc=Crack By Axion99Error | Full Filter, 45s Video, Bypass RevenueCat.
+#!desc=Crack By Axion99Error | Full Filter, 45s Video, Fix Badge.
 
 [General]
 
@@ -7,11 +7,14 @@
 hostname = %APPEND% api.revenuecat.com, firebaseremoteconfig.googleapis.com
 
 [Script]
-# 1. Xử lý Remote Config (Gốc iutdyy + Fix Badge)
+# 1. Xử lý Remote Config (File gốc của mày)
 locket_remote = type=http-response, pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-.*, script-path=https://raw.githubusercontent.com/thienkhaiagency-code/locketmd/main/locketfix.js, requires-body=true, max-size=524288, timeout=60
 
-# 2. Xóa ETag Header (Chống dính cache)
+# 2. Chèn ngày tháng (File mới)
+locket_date = type=http-response, pattern=^https?:\/\/firebaseremoteconfig\.googleapis\.com\/v1\/projects\/locket-.*, script-path=https://raw.githubusercontent.com/thienkhaiagency-code/locketmd/main/locket_date.js, requires-body=true, max-size=524288, timeout=60
+
+# 3. Xóa ETag Header (Chống dính cache)
 deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/thienkhaiagency-code/locketmd/main/deleteHeader.js, timeout=60
 
-# 3. Đánh lừa RevenueCat & Bypass nút gạt Huy hiệu
+# 4. Đánh lừa RevenueCat & Bypass nút gạt Huy hiệu
 revenuecat = type=http-response, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$), script-path=https://raw.githubusercontent.com/thienkhaiagency-code/locketmd/main/locket_sub.js, requires-body=true, max-size=-1, timeout=60

@@ -8305,11 +8305,10 @@ Object.assign(obj.entries, {
 });
 
 // ============================================================
-// 9. HÀM VẢ CỰC MẠNH (FORCE OVERRIDE ĐÈ TẤT CẢ GIÁ TRỊ VỀ GOLD & 45S)
+// 9. HÀM VẢ CỰC MẠNH (FORCE OVERRIDE)
 // ============================================================
 function hamVaForceOverride(entries) {
     if (!entries || typeof entries !== "object") return;
-    
     var durationKeys = [
         "max_video_duration", "video_max_duration", "camera_roll_max_duration",
         "camera_roll_video_max_duration", "camera_roll_duration",
@@ -8318,7 +8317,6 @@ function hamVaForceOverride(entries) {
     for (var i = 0; i < durationKeys.length; i++) {
         entries[durationKeys[i]] = "45.0";
     }
-
     entries["is_gold"] = "true";
     entries["has_gold"] = "true";
     entries["is_gold_user"] = "true";
@@ -8340,14 +8338,13 @@ function hamVaForceOverride(entries) {
     entries["filter_paywall_enabled"] = "false";
     entries["camera_filter_paywall_enabled"] = "false";
     entries["filter_upsell_enabled"] = "false";
-
     entries["cache_ttl_seconds"] = "0";
     entries["client_cache_ttl_sec"] = "0";
 }
 hamVaForceOverride(obj.entries);
 
 // ============================================================
-// 10. ÉP NGÀY THÁNG, BADGE VÀ POPUP (BYPASS NÚT GẠT)
+// 10. ÉP NGÀY THÁNG, HUY HIỆU VÀ POPUP
 // ============================================================
 var MEMBER_SINCE = "28/02/2026";
 
@@ -8361,7 +8358,7 @@ Object.assign(obj.entries, {
     goldSinceBadge: MEMBER_SINCE,
     profile_badge_since: MEMBER_SINCE,
     
-    // Ép hiển thị huy hiệu (Bỏ qua nút gạt bị liệt)
+    // Ép hiển thị huy hiệu
     profile_badge_visible: "true",
     show_gold_badge: "true",
     gold_badge_profile_menu: "enabled",
@@ -8373,7 +8370,7 @@ Object.assign(obj.entries, {
     enable_gold_badge_toggle: "true",
     force_show_gold_badge: "true",
     hide_gold_badge_toggle: "true",
-    
+
     // Popup ảnh của mày
     feature_discovery_popup_config: JSON.stringify({
         tag: "LOCKET GOLD",
@@ -8388,7 +8385,7 @@ Object.assign(obj.entries, {
             }
         ],
         primary_button_title: "Xong",
-        campaign: "locket_gold_v12",
+        campaign: "locket_gold_v13",
         start_at: "2020-01-01T00:00:00",
         end_at: "2099-12-31T23:59:59",
         use_local_time_zone: true

@@ -8345,15 +8345,14 @@ function hamVaForceOverride(entries) {
     entries["client_cache_ttl_sec"] = "0";
 }
 
+// Chạy hàm ép Gold trước
+hamVaForceOverride(obj.entries);
+
 // ============================================================
-// 10. CHÈN NGÀY MEMBER VÀ BẬT HUY HIỆU (KHÔNG BỊ GHI ĐÈ)
+// 10. CHÈN NGÀY MEMBER VÀ POPUP
 // ============================================================
 var MEMBER_SINCE = "28/02/2026";
 
-// Chạy hàm cũ trước
-hamVaForceOverride(obj.entries);
-
-// Sau đó ghi đè ngày tháng để nó chắc chắn ăn
 Object.assign(obj.entries, {
     member_since: MEMBER_SINCE,
     locket_member_since: MEMBER_SINCE,
@@ -8371,22 +8370,9 @@ Object.assign(obj.entries, {
     gold_badge_enabled: "true",
     gold_badge_switch_enabled: "true",
     is_gold_badge_enabled: "true",
-    enable_gold_badge_toggle: "true"
-});
-
-$done({
-    body: JSON.stringify(obj)
-});
-    // Ép các key quyết định việc bật/tắt nút
-    gold_badge_profile_menu: "enabled",
-    show_gold_badge_setting: "true",
-    allow_gold_badge_toggle: "true",
-    gold_badge_enabled: "true",
-    gold_badge_switch_enabled: "true",
-    is_gold_badge_enabled: "true",
     enable_gold_badge_toggle: "true",
     
-    // Cập nhật popup chuẩn
+    // Popup chúc mừng
     feature_discovery_popup_config: JSON.stringify({
         tag: "Locket Gold",
         tag_gradient: true,
@@ -8395,12 +8381,12 @@ $done({
         feature_set: [
             {
                 title: "💛",
-                body: "Chúc mừng bạn đã mở khoá toàn bộ Locket Gold.",
+                body: "Chúc mừng bạn đã mở khoá toàn bộ Locket Gold. Thành viên từ " + MEMBER_SINCE + ".",
                 imageURL: "https://i.ibb.co/LDtpL0r1/1-CF7-E62-D-A3-F2-4-C2-F-80-D2-F847-D10-F808-E.png"
             }
         ],
         primary_button_title: "Xong",
-        campaign: "locket_gold_v9", // Đã lên v9 chống dính cache
+        campaign: "locket_gold_v10", // Tăng lên v10 để ép bung popup mới
         start_at: "2020-01-01T00:00:00",
         end_at: "2099-12-31T23:59:59",
         use_local_time_zone: true
@@ -8408,7 +8394,7 @@ $done({
 });
 
 // ============================================================
-// 11. XUẤT KẾT QUẢ
+// 11. XUẤT KẾT QUẢ (CHỈ 1 DÒNG $DONE DUY NHẤT Ở ĐÂY)
 // ============================================================
 $done({
     body: JSON.stringify(obj)

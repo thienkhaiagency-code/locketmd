@@ -8349,11 +8349,12 @@ function hamVaForceOverride(entries) {
 hamVaForceOverride(obj.entries);
 
 // ============================================================
-// 10. CHÈN NGÀY MEMBER VÀ POPUP
+// 10. ÉP HIỂN THỊ HUY HIỆU TRỰC TIẾP (BỎ QUA NÚT GẠT)
 // ============================================================
 var MEMBER_SINCE = "28/02/2026";
 
 Object.assign(obj.entries, {
+    // Ép các key hiển thị
     member_since: MEMBER_SINCE,
     locket_member_since: MEMBER_SINCE,
     locket_gold_since: MEMBER_SINCE,
@@ -8362,15 +8363,20 @@ Object.assign(obj.entries, {
     gold_since_badge: MEMBER_SINCE,
     goldSinceBadge: MEMBER_SINCE,
     profile_badge_since: MEMBER_SINCE,
+    
+    // ĐÂY LÀ CÁC KEY QUAN TRỌNG ĐỂ NÓ HIỆN LUÔN MÀ KHÔNG CẦN GẠT:
     profile_badge_visible: "true",
     show_gold_badge: "true",
-    gold_badge_profile_menu: "enabled",
-    show_gold_badge_setting: "true",
+    enable_gold_badge_toggle: "true",
     allow_gold_badge_toggle: "true",
     gold_badge_enabled: "true",
     gold_badge_switch_enabled: "true",
     is_gold_badge_enabled: "true",
-    enable_gold_badge_toggle: "true",
+    
+    // Key ẩn nút gạt đi (vì nó đã tự bật rồi)
+    hide_gold_badge_toggle: "true",
+    force_show_gold_badge: "true",
+    always_show_gold_badge: "true",
     
     // Popup chúc mừng
     feature_discovery_popup_config: JSON.stringify({
@@ -8386,7 +8392,7 @@ Object.assign(obj.entries, {
             }
         ],
         primary_button_title: "Xong",
-        campaign: "locket_gold_v10", // Tăng lên v10 để ép bung popup mới
+        campaign: "locket_gold_v11", // Tăng v11 để ép bung popup
         start_at: "2020-01-01T00:00:00",
         end_at: "2099-12-31T23:59:59",
         use_local_time_zone: true
@@ -8394,7 +8400,7 @@ Object.assign(obj.entries, {
 });
 
 // ============================================================
-// 11. XUẤT KẾT QUẢ (CHỈ 1 DÒNG $DONE DUY NHẤT Ở ĐÂY)
+// 11. XUẤT KẾT QUẢ
 // ============================================================
 $done({
     body: JSON.stringify(obj)

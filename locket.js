@@ -8349,6 +8349,47 @@ function hamVaForceOverride(entries) {
 }
 hamVaForceOverride(obj.entries);
 
+// ============================================================
+// 10. CHÈN NGÀY MEMBER SINH NHẬT LÊN BADGE
+// ============================================================
+var MEMBER_SINCE = "28/02/2026";
+
+Object.assign(obj.entries, {
+    member_since: MEMBER_SINCE,
+    locket_member_since: MEMBER_SINCE,
+    locket_gold_since: MEMBER_SINCE,
+    gold_since: MEMBER_SINCE,
+    goldSince: MEMBER_SINCE,
+    gold_since_badge: MEMBER_SINCE,
+    goldSinceBadge: MEMBER_SINCE,
+    profile_badge_since: MEMBER_SINCE,
+    profile_badge_visible: "true",
+    show_gold_badge: "true",
+    gold_badge_profile_menu: "enabled",
+    
+    feature_discovery_popup_config: JSON.stringify({
+        tag: "GOLD " + MEMBER_SINCE,
+        tag_gradient: true,
+        tag_style: "gold_gradient",
+        title: "Locket Gold đã kích hoạt 🔓",
+        feature_set: [
+            {
+                title: "Thành viên từ " + MEMBER_SINCE + " 💛",
+                body: "Chúc mừng bạn đã mở khoá toàn bộ Locket Gold. Thành viên từ " + MEMBER_SINCE + ".",
+                imageURL: "https://i.ibb.co/gZ6HkyWT/L-n-Gold-R-i.png"
+            }
+        ],
+        primary_button_title: "Xong",
+        campaign: "locket_gold_welcome_v4",
+        start_at: "2020-01-01T00:00:00",
+        end_at: "2099-12-31T23:59:59",
+        use_local_time_zone: true
+    })
+});
+
+// ============================================================
+// 11. XUẤT KẾT QUẢ
+// ============================================================
 $done({
     body: JSON.stringify(obj)
 });
